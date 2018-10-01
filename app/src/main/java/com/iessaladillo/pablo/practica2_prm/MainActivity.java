@@ -3,15 +3,12 @@ package com.iessaladillo.pablo.practica2_prm;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import static android.view.View.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,16 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         rdGrpOrg = findViewById(R.id.main_orgExc);
-        euroOri = findViewById(R.id.main_orgExc_Eur);
-        euroFnl = findViewById(R.id.main_fnlExc_Eur);
-        poundOri = findViewById(R.id.main_orgExc_Pnds);
-        poundFnl = findViewById(R.id.main_fnlExc_Pnds);
-        dolarOri = findViewById(R.id.main_orgExc_dlr);
-        dolarFnl = findViewById(R.id.main_fnlExc_dlr);
-        editQty = ActivityCompat.requireViewById(this,R.id.main_EditQty);
-        imgOrg = findViewById(R.id.main_orgExc_ImgView);
-        imgFnl = findViewById(R.id.main_fnlExc_ImgView);
-        bttnChg = findViewById(R.id.main_button);
+        euroOri = findViewById(R.id.rbFromEuro);
+        euroFnl = findViewById(R.id.rbToEuro);
+        poundOri = findViewById(R.id.rbFromPounds);
+        poundFnl = findViewById(R.id.rbToPounds);
+        dolarOri = findViewById(R.id.rbFromDollar);
+        dolarFnl = findViewById(R.id.rbToDollar);
+        editQty = ActivityCompat.requireViewById(this,R.id.txtAmount);
+        imgOrg = findViewById(R.id.imgFrom);
+        imgFnl = findViewById(R.id.imgTo);
+        bttnChg = findViewById(R.id.btnExchange);
         rdGrpOrg = findViewById(R.id.main_orgExc);
         rdGrpFnl = findViewById(R.id.main_fnlExc);
 
@@ -60,37 +57,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeRadioButton(int checkedId) {
         switch (checkedId){
-            case R.id.main_orgExc_Eur:
+            case R.id.rbFromEuro:
                 euroFnl.setEnabled(false);
                 dolarFnl.setEnabled(true);
                 poundFnl.setEnabled(true);
                 imgOrg.setImageResource(R.drawable.ic_iconmonstr_euro);
                 break;
-            case R.id.main_orgExc_dlr:
+            case R.id.rbFromDollar:
                 euroFnl.setEnabled(true);
                 dolarFnl.setEnabled(false);
                 poundFnl.setEnabled(true);
                 imgOrg.setImageResource(R.drawable.ic_iconmonstr_dolar);
                 break;
-            case R.id.main_orgExc_Pnds:
+            case R.id.rbFromPounds:
                 euroFnl.setEnabled(true);
                 dolarFnl.setEnabled(true);
                 poundFnl.setEnabled(false);
                 imgOrg.setImageResource(R.drawable.ic_iconmonstr_pound);
                 break;
-            case R.id.main_fnlExc_Pnds:
+            case R.id.rbToPounds:
                 euroOri.setEnabled(true);
                 dolarOri.setEnabled(true);
                 poundOri.setEnabled(false);
                 imgFnl.setImageResource(R.drawable.ic_iconmonstr_pound);
                 break;
-            case R.id.main_fnlExc_dlr:
+            case R.id.rbToDollar:
                 dolarOri.setEnabled(false);
                 euroOri.setEnabled(true);
                 poundOri.setEnabled(true);
                 imgFnl.setImageResource(R.drawable.ic_iconmonstr_dolar);
                 break;
-            case R.id.main_fnlExc_Eur:
+            case R.id.rbToEuro:
                 euroOri.setEnabled(false);
                 dolarOri.setEnabled(true);
                 poundOri.setEnabled(true);
@@ -115,42 +112,42 @@ public class MainActivity extends AppCompatActivity {
         if(!String.valueOf(editQty.getText().toString()).equals(".")&&!String.valueOf(editQty.getText().toString()).equals("")&&Float.parseFloat(String.valueOf(editQty.getText().toString()))!=0) {
             amount = Float.parseFloat(String.valueOf(editQty.getText().toString()));
             switch (oriIsChecked()) {
-                case R.id.main_orgExc_dlr:
+                case R.id.rbFromDollar:
                     ori = getString(R.string.coin_dolar);
                     switch (fnlIsChecked()) {
-                        case R.id.main_fnlExc_Eur:
+                        case R.id.rbToEuro:
                             fnl = getString(R.string.coin_euro);
                             result = amount * dolarToEuro;
                             break;
-                        case R.id.main_fnlExc_Pnds:
+                        case R.id.rbToPounds:
                             result = amount * dolarToPound;
                             fnl = getString(R.string.coin_pound);
                             break;
                     }
                     break;
-                case R.id.main_orgExc_Pnds:
+                case R.id.rbFromPounds:
                     ori = getString(R.string.coin_pound);
                     switch (fnlIsChecked()) {
-                        case R.id.main_fnlExc_Eur:
+                        case R.id.rbToEuro:
                             result = amount * poundToEuro;
                             fnl = getString(R.string.coin_euro);
 
                             break;
-                        case R.id.main_fnlExc_dlr:
+                        case R.id.rbToDollar:
                             result = amount * poundToDolar;
                             fnl = getString(R.string.coin_dolar);
                             break;
                     }
                     break;
-                case R.id.main_orgExc_Eur:
+                case R.id.rbFromEuro:
                     ori = getString(R.string.coin_euro);
                     switch (fnlIsChecked()) {
-                        case R.id.main_fnlExc_dlr:
+                        case R.id.rbToDollar:
                             result = amount * euroToDolar;
                             fnl = getString(R.string.coin_dolar);
 
                             break;
-                        case R.id.main_fnlExc_Pnds:
+                        case R.id.rbToPounds:
                             result = amount * euroToPound;
                             fnl = getString(R.string.coin_pound);
                             break;
@@ -170,11 +167,11 @@ public class MainActivity extends AppCompatActivity {
     private int oriIsChecked(){
         int id;
         if(dolarOri.isChecked()){
-            id=R.id.main_orgExc_dlr;
+            id=R.id.rbFromDollar;
         }else if(poundOri.isChecked()){
-            id=R.id.main_orgExc_Pnds;
+            id=R.id.rbFromPounds;
         }else{
-            id=R.id.main_orgExc_Eur;
+            id=R.id.rbFromEuro;
         }
 
         return id;
@@ -183,11 +180,11 @@ public class MainActivity extends AppCompatActivity {
         int id;
 
         if(dolarFnl.isChecked()){
-            id=R.id.main_fnlExc_dlr;
+            id=R.id.rbToDollar;
         }else if(poundFnl.isChecked()){
-            id=R.id.main_fnlExc_Pnds;
+            id=R.id.rbToPounds;
         }else{
-            id=R.id.main_fnlExc_Eur;
+            id=R.id.rbToEuro;
         }
 
         return id;

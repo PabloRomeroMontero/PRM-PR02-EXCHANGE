@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/main_EditQty"
+        android:id="@+id/txtAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -48,21 +48,21 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/main_orgExc_Eur"
+            android:id="@+id/rbFromEuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
             android:text="@string/main_euro" />
 
         <RadioButton
-            android:id="@+id/main_orgExc_dlr"
+            android:id="@+id/rbFromDollar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
             android:text="@string/main_dolar" />
 
         <RadioButton
-            android:id="@+id/main_orgExc_Pnds"
+            android:id="@+id/rbFromPounds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
@@ -83,21 +83,21 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/main_fnlExc_Eur"
+            android:id="@+id/rbToEuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
             android:text="@string/main_euro" />
 
         <RadioButton
-            android:id="@+id/main_fnlExc_dlr"
+            android:id="@+id/rbToDollar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
             android:text="@string/main_dolar" />
 
         <RadioButton
-            android:id="@+id/main_fnlExc_Pnds"
+            android:id="@+id/rbToPounds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
@@ -114,7 +114,7 @@
 
 
         <ImageView
-            android:id="@+id/main_orgExc_ImgView"
+            android:id="@+id/imgFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_imagenView_orgExc_marginRight"
@@ -127,7 +127,7 @@
             android:src="@drawable/ic_iconmonstr_arrow_23" />
 
         <ImageView
-            android:id="@+id/main_fnlExc_ImgView"
+            android:id="@+id/imgTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_imagenView_orgExc_marginLeft"
@@ -135,7 +135,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/main_button"
+        android:id="@+id/btnExchange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
