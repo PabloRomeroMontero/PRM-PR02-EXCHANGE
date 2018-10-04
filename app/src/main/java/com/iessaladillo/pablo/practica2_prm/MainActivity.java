@@ -1,7 +1,5 @@
 package com.iessaladillo.pablo.practica2_prm;
 
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editQty;
     private ImageView imgOrg;
     private ImageView imgFnl;
+    // DEFÍNELAS COMO VARIABLES LOCALES AL MÉTODO QUE LAS USA.
     private Button bttnChg;
     private RadioGroup rdGrpOrg;
     private RadioGroup rdGrpFnl;
@@ -37,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         rdGrpOrg = findViewById(R.id.main_orgExc);
         euroOri = findViewById(R.id.rbFromEuro);
         euroFnl = findViewById(R.id.rbToEuro);
-        poundOri = findViewById(R.id.rbFromPounds);
-        poundFnl = findViewById(R.id.rbToPounds);
+        poundOri = findViewById(R.id.rbFromPound);
+        poundFnl = findViewById(R.id.rbToPound);
         dolarOri = findViewById(R.id.rbFromDollar);
         dolarFnl = findViewById(R.id.rbToDollar);
         editQty = ActivityCompat.requireViewById(this,R.id.txtAmount);
@@ -61,37 +63,43 @@ public class MainActivity extends AppCompatActivity {
                 euroFnl.setEnabled(false);
                 dolarFnl.setEnabled(true);
                 poundFnl.setEnabled(true);
-                imgOrg.setImageResource(R.drawable.ic_iconmonstr_euro);
+                imgOrg.setImageResource(R.drawable.ic_euro);
+                imgOrg.setTag(R.drawable.ic_euro);
                 break;
             case R.id.rbFromDollar:
                 euroFnl.setEnabled(true);
                 dolarFnl.setEnabled(false);
                 poundFnl.setEnabled(true);
-                imgOrg.setImageResource(R.drawable.ic_iconmonstr_dolar);
+                imgOrg.setImageResource(R.drawable.ic_dollar);
+                imgOrg.setTag(R.drawable.ic_dollar);
                 break;
-            case R.id.rbFromPounds:
+            case R.id.rbFromPound:
                 euroFnl.setEnabled(true);
                 dolarFnl.setEnabled(true);
                 poundFnl.setEnabled(false);
-                imgOrg.setImageResource(R.drawable.ic_iconmonstr_pound);
+                imgOrg.setImageResource(R.drawable.ic_pound);
+                imgOrg.setTag(R.drawable.ic_pound);
                 break;
-            case R.id.rbToPounds:
+            case R.id.rbToPound:
                 euroOri.setEnabled(true);
                 dolarOri.setEnabled(true);
                 poundOri.setEnabled(false);
-                imgFnl.setImageResource(R.drawable.ic_iconmonstr_pound);
+                imgFnl.setImageResource(R.drawable.ic_pound);
+                imgFnl.setTag(R.drawable.ic_pound);
                 break;
             case R.id.rbToDollar:
                 dolarOri.setEnabled(false);
                 euroOri.setEnabled(true);
                 poundOri.setEnabled(true);
-                imgFnl.setImageResource(R.drawable.ic_iconmonstr_dolar);
+                imgFnl.setImageResource(R.drawable.ic_dollar);
+                imgFnl.setTag(R.drawable.ic_dollar);
                 break;
             case R.id.rbToEuro:
                 euroOri.setEnabled(false);
                 dolarOri.setEnabled(true);
                 poundOri.setEnabled(true);
-                imgFnl.setImageResource(R.drawable.ic_iconmonstr_euro);
+                imgFnl.setImageResource(R.drawable.ic_euro);
+                imgFnl.setTag(R.drawable.ic_euro);
                 break;
         }
     }
@@ -106,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         float dolarToEuro= 0.86f;
         float poundToEuro=  1.13f;
         float poundToDolar = 1.31f;
-        float euroToDolar = 1.13f;
+        float euroToDolar = 1.17f;
         float euroToPound = 0.89f;
 
         if(!String.valueOf(editQty.getText().toString()).equals(".")&&!String.valueOf(editQty.getText().toString()).equals("")&&Float.parseFloat(String.valueOf(editQty.getText().toString()))!=0) {
@@ -119,13 +127,13 @@ public class MainActivity extends AppCompatActivity {
                             fnl = getString(R.string.coin_euro);
                             result = amount * dolarToEuro;
                             break;
-                        case R.id.rbToPounds:
+                        case R.id.rbToPound:
                             result = amount * dolarToPound;
                             fnl = getString(R.string.coin_pound);
                             break;
                     }
                     break;
-                case R.id.rbFromPounds:
+                case R.id.rbFromPound:
                     ori = getString(R.string.coin_pound);
                     switch (fnlIsChecked()) {
                         case R.id.rbToEuro:
@@ -147,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                             fnl = getString(R.string.coin_dolar);
 
                             break;
-                        case R.id.rbToPounds:
+                        case R.id.rbToPound:
                             result = amount * euroToPound;
                             fnl = getString(R.string.coin_pound);
                             break;
@@ -155,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
             }
+            // EN VEZ DE String.format USA getString() DIRECTAMENTE
             Toast.makeText(this, String.format(getString(R.string.main_message_toast), amount, ori, result, fnl), Toast.LENGTH_SHORT).show();
         }
         reset();
@@ -169,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         if(dolarOri.isChecked()){
             id=R.id.rbFromDollar;
         }else if(poundOri.isChecked()){
-            id=R.id.rbFromPounds;
+            id=R.id.rbFromPound;
         }else{
             id=R.id.rbFromEuro;
         }
@@ -182,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         if(dolarFnl.isChecked()){
             id=R.id.rbToDollar;
         }else if(poundFnl.isChecked()){
-            id=R.id.rbToPounds;
+            id=R.id.rbToPound;
         }else{
             id=R.id.rbToEuro;
         }

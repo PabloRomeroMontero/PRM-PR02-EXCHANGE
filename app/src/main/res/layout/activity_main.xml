@@ -13,11 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@+id/main_editQty"
-        android:text="@string/main_quantity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/main_quantity"/>
 
     <EditText
         android:id="@+id/txtAmount"
@@ -62,7 +58,7 @@
             android:text="@string/main_dolar" />
 
         <RadioButton
-            android:id="@+id/rbFromPounds"
+            android:id="@+id/rbFromPound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
@@ -97,7 +93,7 @@
             android:text="@string/main_dolar" />
 
         <RadioButton
-            android:id="@+id/rbToPounds"
+            android:id="@+id/rbToPound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
@@ -112,7 +108,8 @@
         android:layout_margin="@dimen/main_margin_radioButton"
         android:orientation="horizontal">
 
-
+        <!-- DEFINE SIEMPRE PARA LOS ImageView EL ATRIBUTO android:contentDescription CON LA
+        DESCRIPCIÓN TEXTUAL DE LA IMAGEN QUE CONTIENE -->
         <ImageView
             android:id="@+id/imgFrom"
             android:layout_width="wrap_content"
