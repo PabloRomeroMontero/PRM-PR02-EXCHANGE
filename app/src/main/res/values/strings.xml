@@ -8,8 +8,8 @@
     <string name="main_original_exchange">Original Exchange</string>
     <string name="main_button_change">Change</string>
     <string name="main_editText_text">0.00</string>
-    <string name="coin_euro">Euro</string>
-    <string name="coin_pound">Pounds</string>
-    <string name="coin_dolar">Dolar</string>
-    <string name="main_message_toast"><![CDATA[%.2f %s => %.2f %s]]></string>
+    <string name="coin_euro">€</string>
+    <string name="coin_pound">£</string>
+    <string name="coin_dolar">$</string>
+    <string name="main_message_toast">%.2f %s = %.2f %s</string>
 </resources>
